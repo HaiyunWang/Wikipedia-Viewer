@@ -7,18 +7,18 @@
       <P class="serchTitle mt-3">You are looking for {{message}}</P>
       <Result v-for="result in results" :key = 'result.pageid' :result = 'result' :url='url' :message = 'message'/>
     </form>-->
-    <div class="row">
-      <div class="col-md-6 ">
-        <svg width="150" height="271" viewBox="0 0 150 271" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="row w-100">
+      <div class="col-md-6 d-flex align-items-center justify-content-center flex-column">
+        <svg width="54" height="97" viewBox="0 0 54 97" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:6em;height:8em">
           <g id="randomIcon">
-          <path id="Vector 1" d="M105.28 58.1019C94.575 37.2035 65.688 39.1808 49.2136 58.1019C35.4258 73.9374 42.941 91.4497 20.873 87.8265C1.58449 84.6597 -0.691102 61.3846 2.97702 51.5873C30.0251 -20.6565 133.908 -10.659 147.438 42.3629C155.875 75.4243 123.938 109.431 118.201 162.214C112.464 214.997 83.7822 199.518 79.7107 189.889C66.1318 157.777 115.986 79.0003 105.28 58.1019Z" fill="#F4F8F8"/>
-          <path id="Ellipse 1" d="M123.236 243.783C121.15 258.269 107.716 268.321 93.2295 266.236C78.7434 264.15 68.6908 250.716 70.7765 236.23C72.8622 221.743 86.2963 211.691 100.783 213.776C115.269 215.862 125.321 229.296 123.236 243.783Z" fill="#F4F8F8"/>
+          <path id="Vector 1" d="M37.2206 21.9999C33.6155 14.6611 23.8876 15.3554 18.3397 21.9999C13.6966 27.5608 16.2274 33.7105 8.79585 32.4382C2.3003 31.3261 1.53398 23.1527 2.76924 19.7122C11.8779 -5.65742 46.8612 -2.14666 51.4176 16.4729C54.2587 28.0829 43.5037 40.025 41.5717 58.5605C39.6398 77.0961 29.9809 71.6604 28.6099 68.2792C24.0371 57.0026 40.8257 29.3387 37.2206 21.9999Z" stroke="#F4F8F8" stroke-width="3"/>
+          <path id="Ellipse 1" d="M41.7838 86.9819C41.1869 91.3052 37.371 94.2046 33.3676 93.6035C29.3641 93.0024 26.4877 89.0983 27.0846 84.775C27.6815 80.4517 31.4973 77.5524 35.5008 78.1535C39.5042 78.7545 42.3807 82.6587 41.7838 86.9819Z" stroke="#F4F8F8" stroke-width="4"/>
           </g>
         </svg>
         <h3>Random</h3>
       </div>
       <div class="col-md-6 d-flex align-items-center justify-content-center flex-column">
-        <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:6em;height:8em">
           <g id="searchIcon">
           <g id="Union">
           <mask id="path-1-inside-1" fill="white">
@@ -95,7 +95,7 @@ export default {
   overflow-y: scroll;
 }
 form{
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center
@@ -146,5 +146,12 @@ input[type=text]:focus {
 }
 .serchTitle{
   font-size: 18px;
+}
+.row{
+  width: 100vw;
+  height: 50vh;
+}
+.icons{
+  height: 8em;
 }
 </style>
