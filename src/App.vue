@@ -1,57 +1,13 @@
 <template>
   <div id="app">
     <h1 class="title">Wikipedia viewer</h1>
-    <button class="randomArticle" @click="displayRandomArticle()">Random article</button>
-    <form @submit.prevent>
-      <input type="text" placeholder="Search..." name="search" v-model="message" @keyup.enter="searchMessage()">
-      <P class="serchTitle mt-3">You are looking for {{message}}</P>
-      <Result v-for="result in results" :key = 'result.pageid' :result = 'result' :url='url' :message = 'message'/>
-    </form>
-  </div>  
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view/>
+  </div>
 </template>
-
-<script>
-import Result from './components/Result.vue'
-export default {
-  name: 'App',
-  components:{
-    Result
-  },
-  data(){
-    return{
-      message:'',
-      results:[],
-      isSearched:false,
-      url:'https://en.wikipedia.org/wiki/'
-    }
-  },
-  methods:{
-    //entry for random articles
-    displayRandomArticle:function(){
-      window.open('http://en.wikipedia.org/wiki/Special:Random')
-    },
-    //get results data
-    searchMessage:function(){
-    var searchInfo = this.message;
-    this.isSearched = true;
-    // var url =`https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&prop=pageimages%7Cextracts&continue=gsroffset%7C%7C&titles=${searchInfo}&generator=search&redirects=1&exsentences=5&exlimit=10&exintro=1&explaintext=1&gsrsearch=${searchInfo}&gsrlimit=5&gsroffset=5`
-    var url =`https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&prop=pageimages%7Cextracts&continue=gsroffset%7C%7C&titles=${searchInfo}&generator=search&redirects=1&exsentences=3&exlimit=10&exintro=1&explaintext=1&piprop=thumbnail&pithumbsize=200&gsrsearch=${searchInfo}&gsrlimit=5&gsroffset=5`
-    fetch(url)
-    .then(response => response.json())
-    .then(
-      data =>{
-      this.results=[];
-      this.results=Object.values(data.query.pages).filter(x=>{
-        return Object.keys(x).includes('pageid');
-      })
-    })
-    .catch(err=>console.log(err));//catch errors
-    this.message='';
-    this.isSearched=false;
-    }
-  }
-}
-</script>
 
 <style>
 #app {
@@ -59,60 +15,19 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color:#cbdade;
-  margin-top: 60px;
+  color: #2c3e50;
 }
-form{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center
+
+#nav {
+  padding: 30px;
 }
-input[type=text] {
-  width: 130px;
-  box-sizing: border-box;
-  border: 2px solid #cbdade;
-  border-radius: 4px;
-  font-size: 18px;
-  background-color: transparent;
-  background-image: url('./assets/searchIcon.svg');
-  background-size: 25px;
-  background-position: 10px 10px; 
-  background-repeat: no-repeat;
-  padding: 12px 20px 12px 40px;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
-  cursor: pointer;
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
 }
-input[type=text]:focus {
-  width: 90%;
-  background:transparent;
-  background-image: url('./assets/searchIcon.svg');
-  background-size: 25px;
-  background-position: 10px 10px; 
-  background-repeat: no-repeat;
-}
-::placeholder{
-    color:#f4f8f8;
-}
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color:#f4f8f8;
-}
-::-ms-input-placeholder { /* Microsoft Edge */
-    color:#f4f8f8;
-}
-.randomArticle{
-  width: 130px;
-  box-sizing: border-box;
-  border: 2px solid #cbdade;
-  border-radius: 4px;
-  font-size: 18px;
-  background:transparent;
-  color:#f4f8f8;
-  margin: 30px;
-  cursor: pointer;
-}
-.serchTitle{
-  font-size: 18px;
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
